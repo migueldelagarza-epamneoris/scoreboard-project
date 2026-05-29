@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Source files
+src/
+mocks/
+
+# Tests
+tests/
+*.test.ts
+*.spec.ts
+
+# Configuration files
+tsconfig.json
+eslint.config.js
+tsup.config.ts
+
+# Version control
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Other
+.npmignore
+README.md
