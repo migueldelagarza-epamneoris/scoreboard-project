@@ -1,21 +1,22 @@
-import { GameState } from "..";
+import { ERROR_MESSAGES, GameState, hasActivePokemon, validatePokemon } from "..";
 import { isKnockoutPokemon } from "..";
 
 export const applyDamage = (
   gameState: GameState,
   damage: number,
 ): GameState => {
-  if (!gameState.activePokemon) {
-    throw new Error("No active Pokemon to apply damage to.");
+  if (!hasActivePokemon(gameState)) {
+    throw new Error(ERROR_MESSAGES.NO_ACTIVE_POKEMON);
   }
+  const pokemon = validatePokemon(gameState.activePokemon);
   if (damage <= 0) {
-    throw new Error("Damage must be a positive number.");
+    throw new Error(ERROR_MESSAGES.INVALID_DAMAGE);
   }
 
-  if (isKnockoutPokemon(gameState.activePokemon, damage)) {
+  if (isKnockoutPokemon(pokemon, damage)) {
     return {
       ...gameState,
-      discardPile: [...gameState.discardPile, gameState.activePokemon],
+      discardPile: [...gameState.discardPile, pokemon],
       activePokemon: null,
     };
   }
@@ -23,8 +24,8 @@ export const applyDamage = (
   return {
     ...gameState,
     activePokemon: {
-      ...gameState.activePokemon,
-      damageCounters: (gameState.activePokemon.damageCounters || 0) + damage,
+      ...pokemon,
+      damageCounters: (pokemon.damageCounters || 0) + damage,
     },
   };
 };

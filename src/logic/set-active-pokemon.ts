@@ -1,5 +1,7 @@
 import {
-  Pokemon, GameState, hasActivePokemon, isPokemonDefeated, ERROR_MESSAGES
+  Pokemon, GameState, ERROR_MESSAGES,
+  isBasicPokemon, validatePokemon,
+  hasActivePokemon
 } from '..';
 
 /**
@@ -12,11 +14,12 @@ export const setActivePokemon = (
   state: GameState,
   pokemon: Pokemon
 ): GameState => {
-  if(hasActivePokemon(state)) {
+  validatePokemon(pokemon);
+  if (hasActivePokemon(state)) {
     throw new Error(ERROR_MESSAGES.ACTIVE_POKEMON_EXISTS);
   }
-  if(isPokemonDefeated(pokemon)) {
-    throw new Error(ERROR_MESSAGES.INACTIVE_POKEMON_HP);
+  if (!isBasicPokemon(pokemon)) {
+    throw new Error(ERROR_MESSAGES.NOT_BASIC_POKEMON);
   }
   return {
     ...state,

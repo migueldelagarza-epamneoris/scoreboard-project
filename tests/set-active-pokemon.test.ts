@@ -23,6 +23,7 @@ describe('setActivePokemon', () => {
       const initialStateWithActive: GameState = {
         activePokemon: mockPokemon.bulbasaur,
         bench: [],
+        discardPile: [],
         prizeCards: DEFAULT_PRIZE_CARDS,
         turnCount: 1,
         phase: 'draw',
@@ -41,6 +42,15 @@ describe('setActivePokemon', () => {
 
       expect(() => setActivePokemon(initialState, faintedPokemon)).toThrow(
         ERROR_MESSAGES.INACTIVE_POKEMON_HP
+      );
+    });
+
+    it('Should not set active pokemon if the pokemon has stage 1 or stage 2', () => {
+      const initialState: GameState = mockedInitialState;
+      const stage1Pokemon: Pokemon = mockPokemon.charmeleon;
+      
+      expect(() => setActivePokemon(initialState, stage1Pokemon)).toThrow(
+        ERROR_MESSAGES.NOT_BASIC_POKEMON
       );
     });
 });

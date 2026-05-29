@@ -8,5 +8,5 @@ export const mockedInitialState: GameState = {
     turnCount: 1,
     phase: 'draw',
     energyAttachedThisTurn: false,
-    
+    discardPile: []
 }

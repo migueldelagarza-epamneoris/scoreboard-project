@@ -7,4 +7,5 @@ export interface Pokemon {
   readonly type: string;
   readonly damageCounters?: number;
   readonly energy?: EnergyType[];
+  readonly stage: 'Basic' | 'Stage 1' | 'Stage 2';
 }
