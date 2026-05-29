@@ -22,3 +22,5 @@ export * from './constants/game.const';
 export * from './constants/validation.const';
 
 export * from './logic/get-game-state';
+
+export * from './utils/generate-id.util';

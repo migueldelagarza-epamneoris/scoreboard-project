@@ -1,30 +1,30 @@
-import { DEFEATED_POKEMON_HP_THRESHOLD } from '../src';
+import { DEFEATED_POKEMON_HP_THRESHOLD, generateId } from '../src';
 import { Pokemon } from '../src';
 
 export const mockPokemon: Record<string, Pokemon> = {
     pikachu: {
-        id: '0025',
+        id: generateId(),
         name: 'Pikachu',
         hp: 60,
         type: 'Electric',
         stage: 'Basic',
     },
     bulbasaur: {
-        id: '0001',
+        id: generateId(),
         name: 'Bulbasaur',
         hp: 70,
         type: 'Grass',
         stage: 'Basic',
     },
     charmander: {
-        id: '0004',
+        id: generateId(),
         name: 'Charmander',
         hp: 80,
         type: 'Fire',
         stage: 'Basic',
     },
     charmeleon: {
-        id: '0005',
+        id: generateId(),
         name: 'Charmeleon',
         hp: 90,
         type: 'Fire',
@@ -32,21 +32,21 @@ export const mockPokemon: Record<string, Pokemon> = {
     },
 
     squirtle: {
-        id: '0007',
+        id: generateId(),
         name: 'Squirtle',
         hp: 50,
         type: 'Water',
         stage: 'Basic',
     },
     jigglypuff: {
-        id: '0039',
+        id: generateId(),
         name: 'Jigglypuff',
         hp: 90,
         type: 'Normal',
         stage: 'Basic',
     },
     faintedCharmander: {
-        id: '0004',
+        id: generateId(),
         name: 'Charmander',
         hp: DEFEATED_POKEMON_HP_THRESHOLD,
         type: 'Fire',
