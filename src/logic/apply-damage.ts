@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES, GameState, hasActivePokemon, validatePokemon } from "..";
 import { isKnockoutPokemon } from "..";
 
-export const applyDamage = (
+export const applyDamage = /* @__PURE__ */ (
   gameState: GameState,
   damage: number,
 ): GameState => {

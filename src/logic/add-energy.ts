@@ -3,7 +3,7 @@ import { EnergyType } from "..";
 import { isEnergyAttachedThisTurn } from "..";
 import { ERROR_MESSAGES } from "..";
 
-export const AddEnergy = (state: GameState, energy: EnergyType): GameState => {
+export const AddEnergy = /* @__PURE__ */ (state: GameState, energy: EnergyType): GameState => {
     if (isEnergyAttachedThisTurn(state)) {
         throw new Error(ERROR_MESSAGES.ENERGY_ALREADY_ATTACHED);
     }

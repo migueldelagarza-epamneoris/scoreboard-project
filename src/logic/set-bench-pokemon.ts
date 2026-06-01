@@ -3,7 +3,7 @@ import { GameState } from "..";
 import { Pokemon } from "..";
 import { isPokemonDefeated } from "..";
 
-export const setBenchPokemon = (state: GameState, pokemon: Pokemon): GameState => {
+export const setBenchPokemon = /* @__PURE__ */ (state: GameState, pokemon: Pokemon): GameState => {
     validatePokemon(pokemon);
     if(!isBasicPokemon(pokemon)) {
         throw new Error(ERROR_MESSAGES.NOT_BASIC_POKEMON);

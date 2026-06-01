@@ -11,7 +11,7 @@ import {
  * @param pokemon El Pokémon Básico que se enviará al Puesto Activo.
  * @returns Un nuevo estado inmutable con el Pokémon asignado.
  */
-export const setActivePokemon = (
+export const setActivePokemon = /* @__PURE__ */ (
   state: GameState,
   pokemon: Pokemon
 ): GameState => {

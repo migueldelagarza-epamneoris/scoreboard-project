@@ -1,6 +1,6 @@
 import { GameState } from "..";
 
-export const getGameState = (): GameState => {
+export const getGameState = /* @__PURE__ */ (): GameState => {
     return {
         activePokemon: null,
         bench: [],

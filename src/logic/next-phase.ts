@@ -1,6 +1,6 @@
 import { GameState } from "..";
 
-export const nextPhase = (gameState: GameState): GameState => {
+export const nextPhase = /* @__PURE__ */ (gameState: GameState): GameState => {
   switch (gameState.phase) {
     case "draw":
       return { ...gameState, phase: "main" };
