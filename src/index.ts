@@ -14,7 +14,7 @@ export * from './validations/is-pokemon-defeated.validation';
 export * from './validations/is-energy-attached-this-turn.validation';
 export * from './validations/is-knockout-pokemon.validation';
 export * from './validations/is-basic-pokemon.validation';
-export * from './validations/hasSwitchedThisTurn.validation';
+export * from './validations/has-switched-this-turn.validation';
 
 export * from './validations/validate-pokemon.validator';
 
