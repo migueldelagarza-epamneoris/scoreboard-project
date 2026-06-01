@@ -1,6 +1,7 @@
 
-export * from './interfaces/pokemon';
+export * from './interfaces/pokemon.interface';
 export * from './interfaces/game-state.inteface';
+
 export * from './types/energy.type';
 
 export * from './logic/add-energy';
