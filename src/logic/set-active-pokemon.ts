@@ -1,11 +1,12 @@
 import {
   Pokemon, GameState, ERROR_MESSAGES,
   isBasicPokemon, validatePokemon,
-  hasActivePokemon
+  hasActivePokemon,
+  hasSwitchedThisTurn
 } from '..';
 
 /**
- * Transición determinista para asignar el Pokémon Activo durante los preparativos [12].
+ * Transición determinista para asignar el Pokémon Activo.
  * @param state Estado actual de la partida.
  * @param pokemon El Pokémon Básico que se enviará al Puesto Activo.
  * @returns Un nuevo estado inmutable con el Pokémon asignado.
@@ -20,6 +21,9 @@ export const setActivePokemon = (
   }
   if (!isBasicPokemon(pokemon)) {
     throw new Error(ERROR_MESSAGES.NOT_BASIC_POKEMON);
+  }
+  if (hasSwitchedThisTurn(state)) {
+    throw new Error(ERROR_MESSAGES.SWITCHED_THIS_TURN);
   }
   return {
     ...state,

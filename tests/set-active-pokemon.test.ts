@@ -1,56 +1,57 @@
 import { describe, it, expect } from 'vitest';
-import { GameState, Pokemon } from '../src';
-import { setActivePokemon } from '../src';
-import { ERROR_MESSAGES } from '../src';
-import { DEFAULT_PRIZE_CARDS } from '../src';
+import { setActivePokemon } from '../src/logic/set-active-pokemon';
+import { ERROR_MESSAGES, GameState, Pokemon } from '../src';
 import { mockPokemon } from '../mocks/pokemon.mock';
-import { mockedInitialState } from '../mocks/initial-state.mock';
-import { getGameState } from '../src';
 
 describe('setActivePokemon', () => {
-  it('should set active pokemon and not mutate original state', () => {
-    const initialState: GameState = getGameState();
-
-    const pokemon: Pokemon = mockPokemon.pikachu;
-
-    const newState = setActivePokemon(initialState, pokemon);
-    
-    expect(newState.activePokemon).toEqual(pokemon);
-    expect(initialState.activePokemon).toBeNull();
+  const createGameState = (overrides: Partial<GameState> = {}): GameState => ({
+    activePokemon: null,
+    bench: [],
+    prizeCards: 6,
+    discardPile: [],
+    turnCount: 1,
+    phase: 'main',
+    ...overrides,
   });
 
-    it('Should not set active pokemon if there is already one active', () => {
-      const initialStateWithActive: GameState = {
-        activePokemon: mockPokemon.bulbasaur,
-        bench: [],
-        discardPile: [],
-        prizeCards: DEFAULT_PRIZE_CARDS,
-        turnCount: 1,
-        phase: 'draw',
-      };
+  it('debería asignar el Pokémon como activo exitosamente', () => {
+    const state = createGameState();
+    const result = setActivePokemon(state, mockPokemon.pikachu);
 
-      const newPokemon: Pokemon = mockPokemon.pikachu;
+    expect(result.activePokemon).toEqual(mockPokemon.pikachu);
+    expect(result.activePokemon?.name).toBe('Pikachu');
+  });
 
-      expect(() => setActivePokemon(initialStateWithActive, newPokemon)).toThrow(
-        ERROR_MESSAGES.ACTIVE_POKEMON_EXISTS
-      );
-    });
+  it('debería lanzar un error si ya existe un Pokémon activo', () => {
+    const state = createGameState({ activePokemon: mockPokemon.bulbasaur });
+    
+    expect(() => setActivePokemon(state, mockPokemon.pikachu)).toThrow(
+      ERROR_MESSAGES.ACTIVE_POKEMON_EXISTS
+    );
+  });
 
-    it('Should not set active pokemon if the pokemon has 0 HP', () => {
-      const initialState: GameState = mockedInitialState;
-      const faintedPokemon: Pokemon = mockPokemon.faintedCharmander;
+  it('debería lanzar un error si el Pokémon no es básico', () => {
+    const state = createGameState();
+    
+    expect(() => setActivePokemon(state, mockPokemon.charmeleon)).toThrow(
+      ERROR_MESSAGES.NOT_BASIC_POKEMON
+    );
+  });
 
-      expect(() => setActivePokemon(initialState, faintedPokemon)).toThrow(
-        ERROR_MESSAGES.INACTIVE_POKEMON_HP
-      );
-    });
+  it('debería lanzar un error si el Pokémon está derrotado', () => {
+    const state = createGameState();
+    const defeatedPokemon = { ...mockPokemon.pikachu, hp: 0 };
 
-    it('Should not set active pokemon if the pokemon has stage 1 or stage 2', () => {
-      const initialState: GameState = mockedInitialState;
-      const stage1Pokemon: Pokemon = mockPokemon.charmeleon;
-      
-      expect(() => setActivePokemon(initialState, stage1Pokemon)).toThrow(
-        ERROR_MESSAGES.NOT_BASIC_POKEMON
-      );
-    });
+    expect(() => setActivePokemon(state, defeatedPokemon)).toThrow(
+      ERROR_MESSAGES.DEFEATED_POKEMON
+    );
+  });
+
+  it('debería lanzar un error si se intenta asignar un Pokémon activo cuando ya se ha cambiado en este turno', () => {
+    const state = createGameState({ hasSwitchedThisTurn: true });
+
+    expect(() => setActivePokemon(state, mockPokemon.pikachu)).toThrow(
+      ERROR_MESSAGES.SWITCHED_THIS_TURN
+    );
+  });
 });

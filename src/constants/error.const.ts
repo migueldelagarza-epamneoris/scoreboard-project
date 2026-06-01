@@ -7,4 +7,5 @@ export const ERROR_MESSAGES = {
   ENERGY_ALREADY_ATTACHED: 'Ya se ha adjuntado una Energía en este turno.',
   NOT_BASIC_POKEMON: 'Solo se puede asignar un Pokémon Básico.',
   INVALID_DAMAGE: 'El daño debe ser un número positivo.',
+  SWITCHED_THIS_TURN: 'Ya se ha cambiado de Pokémon en este turno.'
 } as const;
