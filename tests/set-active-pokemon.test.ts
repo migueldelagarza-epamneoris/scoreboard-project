@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { setActivePokemon } from '../src/logic/set-active-pokemon';
+import { setActivePokemon } from '../src/core/set-active-pokemon';
 import { ERROR_MESSAGES, GameState, Pokemon } from '../src';
 import { mockPokemon } from '../mocks/pokemon.mock';
 

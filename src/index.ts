@@ -4,11 +4,11 @@ export * from './interfaces/game-state.inteface';
 
 export * from './types/energy.type';
 
-export * from './logic/add-energy';
-export * from './logic/apply-damage';
-export * from './logic/set-active-pokemon';
-export * from './logic/set-bench-pokemon';
-export * from './logic/next-phase';
+export * from './core/add-energy';
+export * from './core/apply-damage';
+export * from './core/set-active-pokemon';
+export * from './core/set-bench-pokemon';
+export * from './core/next-phase';
 
 export * from './validations/has-active-pokemon.validation';
 export * from './validations/is-pokemon-defeated.validation';
@@ -23,6 +23,6 @@ export * from './constants/error.const';
 export * from './constants/game.const';
 export * from './constants/validation.const';
 
-export * from './logic/get-game-state';
+export * from './core/get-game-state';
 
 export * from './utils/generate-id.util';

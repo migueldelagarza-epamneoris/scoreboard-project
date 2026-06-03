@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { applyDamage } from '../src/logic/apply-damage';
+import { applyDamage } from '../src/core/apply-damage';
 import { ERROR_MESSAGES, GameState } from '../src';
 import { mockPokemon } from '../mocks/pokemon.mock';
 
