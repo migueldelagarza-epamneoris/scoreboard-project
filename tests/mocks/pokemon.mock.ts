@@ -1,5 +1,5 @@
-import { DEFEATED_POKEMON_HP_THRESHOLD, generateId } from '../src';
-import { Pokemon } from '../src';
+import { DEFEATED_POKEMON_HP_THRESHOLD, generateId } from '../../src';
+import { Pokemon } from '../../src';
 
 export const mockPokemon: Record<string, Pokemon> = {
     pikachu: {

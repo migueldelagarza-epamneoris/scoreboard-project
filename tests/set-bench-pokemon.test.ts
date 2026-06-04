@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { setBenchPokemon } from '../src/core/set-bench-pokemon';
 import { ERROR_MESSAGES, GameState, Pokemon } from '../src';
-import { mockPokemon } from '../mocks/pokemon.mock';
+import { mockPokemon } from './mocks/pokemon.mock';
 
 describe('setBenchPokemon', () => {
   const createGameState = (bench: any[] = []): GameState => ({

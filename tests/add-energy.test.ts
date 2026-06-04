@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { AddEnergy, ERROR_MESSAGES, GameState } from "../src";
-import { mockedInitialState } from "../mocks/initial-state.mock";
-import { mockPokemon } from "../mocks/pokemon.mock";
+import { mockedInitialState } from "./mocks/initial-state.mock";
+import { mockPokemon } from "./mocks/pokemon.mock";
 
 describe('addEnergy', () => {
   it('should add energy to active pokemon and not mutate original state', () => {
